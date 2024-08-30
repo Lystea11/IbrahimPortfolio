@@ -1,0 +1,563 @@
+@font-face {
+    font-family: "Padaloma";
+    src: url("./fonts/Padaloma.ttf");
+}
+@font-face {
+    font-family: "Raleway";
+    src: url("./fonts/Raleway-Heavy.ttf");
+}
+@font-face {
+    font-family: "Argentum";
+    src: url("./fonts/ArgentumSans-Black.ttf");
+}
+@font-face {
+    font-family: "Monton";
+    src: url("./fonts/Monoton-Regular.ttf");
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #FFFFFF;
+    color: #000000;
+    overflow-x: hidden;
+}
+html {
+    scrollbar-width: none; 
+    scroll-behavior: smooth;
+}
+
+html::-webkit-scrollbar {
+    display: none;
+}
+#style-1::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.1);
+    background-color: transparent;
+}
+
+#style-1::-webkit-scrollbar {
+    background-color: transparent;
+}
+
+#style-1::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: transparent;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #1A535C;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+p {
+    line-height: 1.8;
+    margin-bottom: 20px;
+    color: #555555;
+}
+
+#about h2 {
+    font-size: 5rem;
+    font-family: 'Raleway';
+}
+
+#about h3 {
+    font-size: 3rem;
+    font-family: "Padaloma";
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+header {
+    background-color: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    font-weight: 600;
+    font-size: 1.5rem;
+    position: relative;
+    cursor: pointer;
+    font-family: 'raleway';
+    color: #000;
+    transition: color 0.3s ease;
+}
+
+nav ul li::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: #f9ed03;
+    visibility: hidden;
+    transform: scaleX(0);
+    transition: all 0.3s ease-in-out;
+}
+
+nav ul li:hover::before {
+    visibility: visible;
+    transform: scaleX(1);
+}
+
+.hover-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(220, 223, 32, 0.1);
+    border-radius: 8px;
+    opacity: 0;
+    z-index: -1;
+}
+
+.headroom {
+    will-change: transform;
+    transition: transform 200ms linear;
+}
+.headroom--pinned {
+    transform: translateY(0%);
+}
+.headroom--unpinned {
+    transform: translateY(-100%);
+}
+.home-link {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000000;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+#overlay {
+    z-index:-10;
+    background-color: #FFFFFF;
+    opacity: 0.45;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+} 
+.hero canvas {
+    z-index: 0;
+}
+.hero h1 {
+    font-size: 7rem;
+    margin-bottom: 20px;
+    font-family: 'Argentum';
+    color: #1A535C;
+    transform: translateY(-60px);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    z-index: inherit;
+}
+
+.hero p {
+    font-size: 2rem;
+    max-width: 1200px;
+    color: #333333;
+    transform: translateY(-60px);
+    margin: auto;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    z-index: inherit;
+}
+
+
+
+
+#physicsCanvas {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -10;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* About Section */
+.about {
+    padding: 100px 20px;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+}
+
+@media (min-width: 768px) {
+    .about {
+        flex-direction: row;
+        padding: 150px 20px;
+    }
+}
+
+.about .content {
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    .about .content {
+        text-align: left;
+    }
+}
+
+.about img {
+    flex: 1;
+    width: 80%;
+    max-width: 300px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: width 0.3s ease-in-out;
+}
+
+@media (min-width: 768px) {
+    .about img {
+        margin-bottom: 0;
+        margin-right: 20px;
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 480px) {
+    .about img {
+        width: 60%;
+        max-width: 200px;
+    }
+}
+
+/* Skills Section */
+.skills {
+    padding: 100px 0;
+}
+
+.skills h2 {
+    font-size: 5rem;
+}
+
+.skills .skill-item {
+    width: 30%;
+    text-align: center;
+    padding: 20px;
+    background: #FFFFFF;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.skills .skill-item:hover {
+    transform: translateY(-10px);
+}
+
+/* Experience Section */
+.experience {
+    padding: 100px 0;
+}
+
+
+/* BENTO GRID */ 
+
+.bento-grid-section h1 {
+    font-size: 5rem;
+    margin-bottom: 30px;
+    color: #1A535C; 
+    text-align: center;
+    font-family: 'Raleway';
+}
+
+.bento-grid {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, minmax(150px, auto));
+    gap: 20px;
+    margin-right: 50px;
+    margin-left: 50px;
+    padding-bottom: 50px;
+    z-index: 1;
+    perspective: 1000px; 
+}
+
+.service-card {
+    background-color: rgba(255,107,107,0.8); 
+    border: 5px solid #000;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    transform: rotateX(2deg) rotateY(3deg) translateZ(0); 
+    transform-style: preserve-3d;
+    opacity: 1;
+    z-index: 2;
+    color: #34495e; 
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); 
+}
+
+.service-card:hover {
+    transform: rotateX(0deg) rotateY(0deg) translateZ(15px); 
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); 
+    background-color: rgba(255,107,107,0.95)
+}
+.service-card.alt-rotate:hover {
+    transform: rotateX(0deg) rotateY(0deg) translateZ(15px); 
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2); 
+}
+
+.service-card i {
+    font-size: 2.5rem;
+    color: #000000; 
+    margin-bottom: 15px;
+    transform: translateZ(1px); 
+}
+
+.service-card h2 {
+    font-size: 1.5rem; 
+    margin-bottom: 10px;
+    color: #000000; 
+    font-weight: bold;
+    transform: translateZ(1px);
+}
+
+.service-card p {
+    font-size: 1rem; 
+    color: #555555;
+    transform: translateZ(500px);
+}
+
+.service-card.large {
+    grid-column: span 1;
+    grid-row: span 3;
+    background-color: rgba(255,230,109,0.8);
+    transition: all 0.45s;
+}
+.serivce-card.large:hover {
+    background-color: rgba(255,230,109,0.95);
+}
+
+.service-card.medium {
+    grid-column: span 2;
+    
+    background-color: rgba(94,218,209, 0.8);
+    transition: all 0.45s;
+}
+.service-card.medium:hover {
+    background-color: rgba(94,218,209, 0.95);
+}
+
+/* PAST PROJECTS */
+
+.projects-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+#experience h1 {
+    font-size: 5rem;
+    padding: 30px 0px;
+    font-family: 'Raleway';
+    color: #1A535C;
+}
+#experience {
+    justify-content: center;
+    align-self: center;
+    text-align: center;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.project-card {
+    background-color: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    opacity: 0;
+    transform: scale(0.9);
+}
+
+.project-card:hover {
+    transform: translateY(-10px) scale(1.05);
+}
+
+.project-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.project-info {
+    padding: 20px;
+}
+
+.project-title {
+    color: #FF6B6B;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.project-description {
+    color: #4A4A4A;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.project-link {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #FFD93D;
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    transition: background-color 0.3s ease;
+}
+
+.project-link:hover {
+    background-color: rgb(255,230,109);
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0px); }
+}
+
+.floating {
+    animation: float 4s ease-in-out infinite;
+}
+
+/* Contact Section */
+.contact {
+    display: grid;
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 100px 0;
+    color: #FFFFFF;
+    text-align: center;
+    justify-content: center;
+}
+
+.contact h2 {
+    font-size: 5rem;  
+    font-family: 'Raleway';
+    margin-bottom: 40px;  
+}
+
+.contact form {
+    max-width: 800px;  
+    width: 90%;  
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.contact input,
+.contact textarea {
+    resize: vertical;
+    width: 100%;
+    padding: 20px;  
+    margin: 15px 0;  
+    border: none;
+    border-radius: 8px;  
+    background-color: rgba(215, 213, 213, 0.95);
+    color: #000;
+    box-sizing: border-box;
+    font-size: 1.2rem;  
+}
+
+.contact input[type="submit"] {
+    background-color: #1A535C;
+    color: #fff;
+    font-size: 1.5rem;  
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: 'Raleway';
+    width: 100%;
+    margin: 20px 0; 
+    align-self: stretch;
+    padding: 20px;  
+    font-weight: bold;  
+}
+
+.contact input[type="submit"]:hover {
+    background-color: #FFD93D;
+}
+
+/* Added media query for smaller screens */
+@media (max-width: 600px) {
+    .contact form {
+        width: 95%;
+    }
+    
+    .contact h2 {
+        font-size: 3rem;
+    }
+    
+    .contact input,
+    .contact textarea,
+    .contact input[type="submit"] {
+        font-size: 1rem;
+        padding: 15px;
+    }
+}
