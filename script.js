@@ -1,3 +1,7 @@
+//CREATED BY: LYSANDRE STONE-BOURGEOIS (LYSTEA11)
+//CREATED ON: 08/09/2024 (dd/mm/yyyy)
+//LICENSE: MIT LICENSE
+
 const lenis = new Lenis({
     duration: 1.2,  // Adjust scrolling duration (in seconds)
     smooth: true,
@@ -25,30 +29,52 @@ var headroom = new Headroom(navbar, options);
 headroom.init();
 
 gsap.registerPlugin(ScrollTrigger);
-document.addEventListener('DOMContentLoaded', () => {
-    const navItems = document.querySelectorAll('nav ul li');
 
-    navItems.forEach(item => {
-        // Create hover background element
-        const hoverBg = document.createElement('div');
-        hoverBg.classList.add('hover-bg');
-        item.appendChild(hoverBg);
+const navItems = document.querySelectorAll('nav ul li');
+const careerCards = document.querySelectorAll('.career-card');
+console.log(document.querySelectorAll('.career-card'));
 
-        // GSAP animations
-        item.addEventListener('mouseenter', () => {
-            gsap.to(item, {
-                y: -3,
-                duration: 0.3,
-                ease: 'power2.out'
-            });
+navItems.forEach(item => {
+    // Create hover background element
+    const hoverBg = document.createElement('div');
+    hoverBg.classList.add('hover-bg');
+    item.appendChild(hoverBg);
+
+    // GSAP hover animations for navigation items
+    item.addEventListener('mouseenter', () => {
+        gsap.to(item, {
+            y: -3,
+            duration: 0.3,
+            ease: 'power2.out'
         });
+    });
 
-        item.addEventListener('mouseleave', () => {
-            gsap.to(item, {
-                y: 0,
-                duration: 0.3,
-                ease: 'power2.out'
-            });
+    item.addEventListener('mouseleave', () => {
+        gsap.to(item, {
+            y: 0,
+            duration: 0.3,
+            ease: 'power2.out'
+        });
+    });
+});
+
+// GSAP hover animations for career cards
+careerCards.forEach(card => {
+    console.log(card);
+    card.addEventListener('mouseenter', () => {
+        console.log("yo");
+        gsap.to(card, {
+            scale: 1.5,
+            y: 50, // You can adjust this if needed
+            duration: 0.3,
+        });
+    });
+
+    card.addEventListener('mouseleave', () => {
+        gsap.to(card, {
+            scale: 1,
+            duration: 0.3,
+            ease: 'power2.out'
         });
     });
 });
