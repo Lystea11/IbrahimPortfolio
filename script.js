@@ -64,9 +64,8 @@ careerCards.forEach(card => {
     card.addEventListener('mouseenter', () => {
         console.log("yo");
         gsap.to(card, {
-            scale: 1.5,
-            y: 50, // You can adjust this if needed
-            duration: 0.3,
+            scale: 1.01,
+            duration: 0.2,
         });
     });
 
