@@ -8,7 +8,7 @@
 
   
 
-![Project Banner](https://example.com/Project-Banner.png)
+![Project Banner](https://github.com/Lystea11/IbrahimPortfolio/blob/main/Banner.png)
 
   
 
